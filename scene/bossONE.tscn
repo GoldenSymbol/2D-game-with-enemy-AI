@@ -1,0 +1,124 @@
+[gd_scene load_steps=27 format=3 uid="uid://c7fveucs54jyy"]
+
+[ext_resource type="Texture2D" uid="uid://cqcpo4wwrrx7l" path="res://boss1/attack/8.png" id="1_tdxj1"]
+[ext_resource type="Texture2D" uid="uid://deu3um3odvbnr" path="res://boss1/idle/1.png" id="2_texth"]
+[ext_resource type="Texture2D" uid="uid://j70ifumalbaf" path="res://boss1/idle/2.png" id="3_iphmi"]
+[ext_resource type="Texture2D" uid="uid://da54euj6jbywh" path="res://boss1/idle/3.png" id="4_kjnmo"]
+[ext_resource type="Texture2D" uid="uid://dab5noolyrkk1" path="res://boss1/idle/4.png" id="5_8grdf"]
+[ext_resource type="Texture2D" uid="uid://bfq51cauenltx" path="res://boss1/attack/1.png" id="6_m3sfd"]
+[ext_resource type="Texture2D" uid="uid://ds7yubompoxm6" path="res://boss1/attack/2.png" id="7_62ab4"]
+[ext_resource type="Texture2D" uid="uid://ca00q3extumx1" path="res://boss1/attack/3.png" id="8_oyido"]
+[ext_resource type="Texture2D" uid="uid://8da0ag750px8" path="res://boss1/attack/5.png" id="9_1lgb7"]
+[ext_resource type="Texture2D" uid="uid://dpwv7in6p25by" path="res://boss1/attack/6.png" id="10_st7en"]
+[ext_resource type="Texture2D" uid="uid://xllfjulxq2dt" path="res://boss1/attack/7.png" id="11_bshll"]
+[ext_resource type="Texture2D" uid="uid://dnt2dfeamkll5" path="res://boss1/attack/9.png" id="12_j46cu"]
+[ext_resource type="Texture2D" uid="uid://khs1o52x2lro" path="res://boss1/attack/10.png" id="13_tdn3l"]
+[ext_resource type="Texture2D" uid="uid://b6qlyc1sg53l6" path="res://boss1/attack/11.png" id="14_ppkj5"]
+[ext_resource type="Texture2D" uid="uid://bltoj1uls48fc" path="res://boss1/attack/12.png" id="15_a2jqe"]
+[ext_resource type="Texture2D" uid="uid://bcecyjsevo2cj" path="res://boss1/attack/14.png" id="16_23nlg"]
+[ext_resource type="Texture2D" uid="uid://b04k1jpamvaih" path="res://boss1/attack/15.png" id="17_hssqv"]
+[ext_resource type="Script" path="res://scripts/states/State Machine.gd" id="18_2bj3k"]
+[ext_resource type="Script" path="res://scripts/states/enemyIdle.gd" id="19_yc31u"]
+[ext_resource type="Script" path="res://scripts/states/enemyFollow.gd" id="20_7u7r5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dheiy"]
+radius = 26.7269
+height = 124.28
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5o130"]
+radius = 38.0
+height = 152.0
+
+[sub_resource type="Animation" id="Animation_uy3s0"]
+resource_name = "attack"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_m3sfd"), ExtResource("2_texth"), ExtResource("7_62ab4"), ExtResource("8_oyido"), ExtResource("9_1lgb7"), ExtResource("10_st7en"), ExtResource("11_bshll"), ExtResource("1_tdxj1")]
+}
+
+[sub_resource type="Animation" id="Animation_h2x5d"]
+resource_name = "attack2"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_tdxj1"), ExtResource("6_m3sfd"), ExtResource("12_j46cu"), ExtResource("13_tdn3l"), ExtResource("14_ppkj5"), ExtResource("15_a2jqe"), ExtResource("16_23nlg"), ExtResource("17_hssqv")]
+}
+
+[sub_resource type="Animation" id="Animation_gabvp"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_texth"), ExtResource("2_texth"), ExtResource("2_texth"), ExtResource("3_iphmi"), ExtResource("4_kjnmo"), ExtResource("5_8grdf")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ciy2f"]
+_data = {
+"attack": SubResource("Animation_uy3s0"),
+"attack2": SubResource("Animation_h2x5d"),
+"idle": SubResource("Animation_gabvp")
+}
+
+[node name="Node2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3.8147e-06, 3.8147e-06)
+scale = Vector2(2.925, 2.925)
+texture = ExtResource("1_tdxj1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, 7)
+scale = Vector2(1.49662, 1.49662)
+shape = SubResource("CapsuleShape2D_dheiy")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-11, 12)
+shape = SubResource("CapsuleShape2D_5o130")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ciy2f")
+}
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("18_2bj3k")
+initial_state = NodePath("Follow")
+
+[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("19_yc31u")
+enemy = NodePath("../..")
+
+[node name="Follow" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("20_7u7r5")
+enemy = NodePath("../..")
