@@ -571,8 +571,8 @@ layer_0/tile_data = PackedInt32Array(655360, 458752, 5, 720896, 458752, 6, 78643
 [node name="player" parent="." instance=ExtResource("3_mnvqg")]
 position = Vector2(143, 514)
 
-[node name="Boss" parent="." instance=ExtResource("6_odu1w")]
-position = Vector2(3068, 379)
-script = ExtResource("7_f10ma")
+[node name="Camera2D" type="Camera2D" parent="player"]
 
-[node name="Camera2D" type="Camera2D" parent="Boss"]
+[node name="Boss" parent="." instance=ExtResource("6_odu1w")]
+position = Vector2(3136, 386)
+script = ExtResource("7_f10ma")

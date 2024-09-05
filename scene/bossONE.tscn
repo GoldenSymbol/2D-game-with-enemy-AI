@@ -113,7 +113,7 @@ libraries = {
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("18_2bj3k")
-initial_state = NodePath("Follow")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("19_yc31u")

@@ -9,9 +9,8 @@ func Enter():
 
 func physics_update(delta: float):
 	var diraction = player.global_position - enemy.global_position
-	if diraction.length() > 25:
+	if diraction.length() < 500:
 		enemy.velocity = diraction.normalized() * move_speed
 	else:
 		enemy.velocity = Vector2()
-	if diraction.length() > 50:
-		Transitioned.emit(self, "idle")
+		Transitioned.emit(self, "Idle")

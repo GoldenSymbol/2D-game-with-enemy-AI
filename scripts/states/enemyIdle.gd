@@ -25,5 +25,6 @@ func physics_update(delta : float):
 	if enemy:
 		enemy.velocity = move_diraction * move_speed
 	var diraction = player.global_position - enemy.global_position
-	if diraction.length() < 30:
+	var length = diraction.length()
+	if length < 500:
 		Transitioned.emit(self, "Follow")
